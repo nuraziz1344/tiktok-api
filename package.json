@@ -1,11 +1,11 @@
 {
     "name": "tiktok-scraper",
     "version": "1.0.0",
-    "main": "dist/main.js",
+    "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
         "start": "node .",
-        "dev": "nodemon -e ts main.ts",
+        "dev": "nodemon -e ts index.ts",
         "build": "tsc"
     },
     "devDependencies": {
