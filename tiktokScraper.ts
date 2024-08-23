@@ -45,16 +45,12 @@ export default async function tiktok(url: string) {
 }
 
 async function tiktokSlide(url: string) {
-    return axios.get(url, { headers: header }).then(({ data, headers, request }) => {
-        const msToken = headers["set-cookie"]
-            .find((cookie) => cookie.startsWith("msToken"))
-            .split(";")[0]
-            .split("=")[1];
+    return axios.get(url, { headers: header }).then(({ data, request }) => {
         const odinId = /"odinId":"(.*?)"/s.exec(data)[1];
         const itemId = /tiktok\.com\/(.*?)\/photo\/(.*?)\?/gm.exec(request.res.responseUrl)[2];
         const webIdLastTime = /"webIdCreatedTime":"(.*?)"/s.exec(data)[1];
         const deviceId = /"wid":"(.*?)"/s.exec(data)[1];
-        const detailUrl = `https://www.tiktok.com/api/item/detail/?WebIdLastTime=${webIdLastTime}&aid=1988&app_language=en&app_name=tiktok_web&browser_language=en-US&browser_name=Mozilla&browser_online=true&browser_platform=Linux%20x86_64&browser_version=5.0%20%28X11%3B%20Linux%20x86_64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F127.0.0.0%20Safari%2F537.36%20Edg%2F127.0.0.0&channel=tiktok_web&clientABVersions=70508271&clientABVersions=72213608&clientABVersions=72313476&clientABVersions=72406134&clientABVersions=72422414&clientABVersions=72507665&clientABVersions=72516864&clientABVersions=72556483&clientABVersions=72602618&clientABVersions=72607426&clientABVersions=72612481&clientABVersions=72619473&clientABVersions=72620774&clientABVersions=72637610&clientABVersions=72637703&clientABVersions=72651443&clientABVersions=72653054&clientABVersions=70405643&clientABVersions=71057832&clientABVersions=71200802&clientABVersions=72258247&clientABVersions=72445639&cookie_enabled=true&coverFormat=2&data_collection_enabled=false&device_id=${deviceId}&device_platform=web_pc&focus_state=true&from_page=user&history_len=2&is_fullscreen=false&is_page_visible=true&itemId=${itemId}&language=en&odinId=${odinId}&os=linux&priority_region=&referer=&region=SG&screen_height=1080&screen_width=1920&tz_name=Asia%2FJakarta&user_is_login=false&webcast_language=en&msToken=${msToken}`;
+        const detailUrl = `https://www.tiktok.com/api/item/detail/?WebIdLastTime=${webIdLastTime}&aid=1988&app_language=en&app_name=tiktok_web&browser_language=en-US&browser_name=Mozilla&browser_online=true&browser_platform=Linux%20x86_64&browser_version=5.0%20%28X11%3B%20Linux%20x86_64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F127.0.0.0%20Safari%2F537.36%20Edg%2F127.0.0.0&channel=tiktok_web&clientABVersions=70508271&clientABVersions=72213608&clientABVersions=72313476&clientABVersions=72406134&clientABVersions=72422414&clientABVersions=72507665&clientABVersions=72516864&clientABVersions=72556483&clientABVersions=72602618&clientABVersions=72607426&clientABVersions=72612481&clientABVersions=72619473&clientABVersions=72620774&clientABVersions=72637610&clientABVersions=72637703&clientABVersions=72651443&clientABVersions=72653054&clientABVersions=70405643&clientABVersions=71057832&clientABVersions=71200802&clientABVersions=72258247&clientABVersions=72445639&cookie_enabled=true&coverFormat=2&data_collection_enabled=false&device_id=${deviceId}&device_platform=web_pc&focus_state=true&from_page=user&history_len=2&is_fullscreen=false&is_page_visible=true&itemId=${itemId}&language=en&odinId=${odinId}&os=linux&priority_region=&referer=&region=SG&screen_height=1080&screen_width=1920&tz_name=Asia%2FJakarta&user_is_login=false&webcast_language=en`;
         const tiktok_xbogus = xbogus(detailUrl, header["User-Agent"]);
 
         return axios.get(detailUrl + "&X-Bogus=" + tiktok_xbogus, { headers: header }).then(({ data }) => {
