@@ -18,6 +18,7 @@
         "cheerio": "^1.0.0",
         "express": "^4.19.2",
         "morgan": "^1.10.0",
+        "platformsh-config": "^2.4.1",
         "xbogus": "^1.0.2"
     }
 }

@@ -1,11 +1,10 @@
 import express from "express";
 import morgan from "morgan";
 import tiktokDl from "./tiktokScraper";
+const config = require("platformsh-config").config();
 
 const app = express();
 app.use(morgan("dev"));
-
-const PORT = parseInt(process.env.PORT || "3000");
 
 app.get("/", (req, res) => {
     res.send("ok");
@@ -36,6 +35,6 @@ app.get("/tiktok", async (req, res) => {
         });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(config.port, "0.0.0.0", () => {
+    console.log(`Server running on port ${config.port}`);
 });
