@@ -10,7 +10,7 @@ dependencies:
         yarn: "1.22.19"
 
 hooks:
-    build: yarn install && yarn build
+    build: yarn install && yarn exec tsc
 
 web:
     commands:
