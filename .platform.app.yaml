@@ -1,10 +1,17 @@
 # The name of this app. Must be unique within a project.
 name: app
 type: "nodejs:20"
+
 build:
     flavor: none
+
+dependencies:
+    nodejs:
+        yarn: "1.22.19"
+
 hooks:
     build: yarn install && yarn build
+
 web:
     commands:
         start: "yarn start"
