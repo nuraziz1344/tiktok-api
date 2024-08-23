@@ -23,12 +23,13 @@ export default async function tiktok(url: string) {
         } else if (!/tiktok\.com\/(.*?)\/video\//gm.test(request.res.responseUrl)) {
             return { error: "Invalid Tiktok URL" };
         }
+        const cookie = headers["set-cookie"].map((cookie) => cookie.split(";")[0]).join("; ");
         const res = load(data)("script#__UNIVERSAL_DATA_FOR_REHYDRATION__").html();
         const videoDetail = JSON.parse(res)["__DEFAULT_SCOPE__"]["webapp.video-detail"]["itemInfo"]["itemStruct"];
         const caption = videoDetail["desc"];
         if (videoDetail["video"]["downloadAddr"]) {
             return axios
-                .get(videoDetail["video"]["downloadAddr"], { headers: header, responseType: "arraybuffer" })
+                .get(videoDetail["video"]["downloadAddr"], { headers: { ...header, cookie }, responseType: "arraybuffer" })
                 .then(({ data }) => ({ caption, video: Buffer.from(data) }));
         } else if (videoDetail["video"]["playAddr"]) {
             return await axios
@@ -36,7 +37,7 @@ export default async function tiktok(url: string) {
                     responseType: "arraybuffer",
                     headers: {
                         ...header,
-                        cookie: headers["set-cookie"].map((cookie) => cookie.split(";")[0]).join("; "),
+                        cookie,
                     },
                 })
                 .then(({ data }) => ({ caption, video: Buffer.from(data) }));
