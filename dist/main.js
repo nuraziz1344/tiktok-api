@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const tiktokScraper_1 = __importDefault(require("./tiktokScraper"));
+const config = require("platformsh-config").config();
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)("dev"));
-const PORT = parseInt(process.env.PORT || "3000");
 app.get("/", (req, res) => {
     res.send("ok");
 });
@@ -39,6 +39,6 @@ app.get("/tiktok", async (req, res) => {
         res.status(500).json({ error: "server error" });
     });
 });
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(config.port, "0.0.0.0", () => {
+    console.log(`Server running on port ${config.port}`);
 });
