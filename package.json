@@ -20,5 +20,6 @@
         "morgan": "^1.10.0",
         "platformsh-config": "^2.4.1",
         "xbogus": "^1.0.2"
-    }
+    },
+    "packageManager": "yarn@1.22.22"
 }
