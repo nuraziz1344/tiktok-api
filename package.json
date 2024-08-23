@@ -4,7 +4,7 @@
     "main": "dist/main.js",
     "license": "MIT",
     "scripts": {
-        "start": "node dist/main.js",
+        "start": "node .",
         "dev": "nodemon -e ts main.ts",
         "build": "tsc"
     },

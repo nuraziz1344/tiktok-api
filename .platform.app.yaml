@@ -24,4 +24,4 @@ disk: 2048
 
 web:
     commands:
-        start: "node dist/index.js"
+        start: "yarn build && yarn start"
