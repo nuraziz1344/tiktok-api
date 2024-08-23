@@ -1,0 +1,23 @@
+{
+    "name": "tiktok-scraper",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "node dist/main.js",
+        "dev": "nodemon -e ts main.ts",
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "@types/morgan": "^1.9.9",
+        "@types/node": "^22.5.0"
+    },
+    "dependencies": {
+        "axios": "^1.7.4",
+        "cheerio": "^1.0.0",
+        "express": "^4.19.2",
+        "morgan": "^1.10.0",
+        "xbogus": "^1.0.2"
+    }
+}
