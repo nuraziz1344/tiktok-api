@@ -3,7 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import tiktokDl from "./tiktokScraper";
 
-const APP_PORT = process.env.PORT || 3000;
+const APP_PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const app = express();
 app.use(morgan("dev"));
