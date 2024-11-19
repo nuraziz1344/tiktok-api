@@ -9,7 +9,6 @@ let config: { [key: string]: any } = {
 if (!config.port) {
     try {
         config = require("platformsh-config").config();
-        config.port = 3000;
     } catch (error) {}
 }
 if (!config.port) {
