@@ -46,3 +46,5 @@ app.get("/tiktok", async (req, res) => {
 app.listen(config.port, "0.0.0.0", () => {
     console.log(`Server running on port ${config.port}`);
 });
+
+export default app;
