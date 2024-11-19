@@ -6,8 +6,13 @@ import tiktokDl from "./tiktokScraper";
 let config: { [key: string]: any } = {
     port: process.env.PORT,
 };
-if (!process.env.PORT) {
-    config = require("platformsh-config").config();
+if (!config.port) {
+    try {
+        config = require("platformsh-config").config();
+        config.port = 3000;
+    } catch (error) {}
+}
+if (!config.port) {
     config.port = 3000;
 }
 
