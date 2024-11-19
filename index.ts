@@ -1,7 +1,15 @@
+import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import tiktokDl from "./tiktokScraper";
-const config = require("platformsh-config").config();
+
+let config: { [key: string]: any } = {
+    port: process.env.PORT,
+};
+if (!process.env.PORT) {
+    config = require("platformsh-config").config();
+    config.port = 3000;
+}
 
 const app = express();
 app.use(morgan("dev"));
